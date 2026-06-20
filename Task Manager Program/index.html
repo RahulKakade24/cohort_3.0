@@ -24,7 +24,7 @@
         </button>
     </header>
 
-    <HERO>
+    
     <section class="hero">
         <h1>Smart Task Manager</h1>
 
@@ -39,7 +39,7 @@
             <input
                 type="text"
                 id="taskInput"
-                value="Default Task"
+                value=""
                 placeholder="Enter Task..."
             >
 
@@ -56,31 +56,39 @@
         </div>
 
     </section>
+ <!-- Task counter -->
+    <section class="task-board">
 
-    <!-- Attribute & property -->
-    <section class="attribute-section card">
+        <h2>Your Tasks</h2>
 
-        <h2>Attribute vs Property Demo</h2>
-
-        <p>
-            Type something below and compare:
-        </p>
-
-        <input
-            type="text"
-            id="demoInput"
-            value="Original Attribute Value"
-        >
-
-        <button id="compareBtn">
-            Compare Values
-        </button>
-
-        <div id="comparisonResult">
+        <div id="taskContainer">
 
         </div>
 
     </section>
+
+<!-- DOM Manipulation -->
+     <section class="dom-lab card">
+
+    <h2>DOM Manipulation on Tasks</h2>
+
+    <div class="dom-buttons">
+
+        <button id="appendDemo">append()</button>
+        <button id="prependDemo">prepend()</button>
+        <button id="beforeDemo">before()</button>
+        <button id="afterDemo">after()</button>
+        <button id="replaceDemo">replaceWith()</button>
+        <button id="removeDemo">remove()</button>
+
+    </div>
+
+</section>
+
+    
+
+
+       
 
     <!-- Search & filter-->
     <section class="search-filter card">
@@ -143,7 +151,7 @@
 
     </section>
 
-    <!-- Acction buttons -->
+    <!-- Action buttons -->
     <section class="action-section">
 
         <button id="clearAll" class="danger-btn">
@@ -152,55 +160,28 @@
 
     </section>
 
-    <!-- Task counter -->
-    <section class="task-board">
+   
 
-        <h2>Your Tasks</h2>
+    <!-- Attribute & property -->
+    <section class="attribute-section card">
 
-        <div id="taskContainer">
+        <h2>Attribute vs Property Demo</h2>
 
-        </div>
+        <p>
+            Type something below and compare:
+        </p>
 
-    </section>
+        <input
+            type="text"
+            id="demoInput"
+            value="Original Attribute Value"
+        >
 
-    <!-- dom manipulation -->
-    <section class="dom-lab card">
+        <button id="compareBtn">
+            Compare Values
+        </button>
 
-        <h2>DOM Manipulation Playground</h2>
-
-        <div class="dom-buttons">
-
-            <button id="appendDemo">
-                append()
-            </button>
-
-            <button id="prependDemo">
-                prepend()
-            </button>
-
-            <button id="beforeDemo">
-                before()
-            </button>
-
-            <button id="afterDemo">
-                after()
-            </button>
-
-            <button id="replaceDemo">
-                replaceWith()
-            </button>
-
-            <button id="removeDemo">
-                remove()
-            </button>
-
-        </div>
-
-        <div id="demoContainer">
-
-            <div id="demoBox">
-                Target Element
-            </div>
+        <div id="comparisonResult">
 
         </div>
 
