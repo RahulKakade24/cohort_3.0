@@ -1,20 +1,6 @@
-/* ==========================================
-   DOMFLOW PRO - TASK MANAGER
-   Vanilla JavaScript Only
-   Covers:
-   - DOM Manipulation
-   - Event Handling
-   - Event Delegation
-   - Event Bubbling
-   - Event Capturing
-   - Attributes vs Properties
-   - Local Storage
-   - DocumentFragment
-========================================== */
 
-/* ==========================================
-   ELEMENTS
-========================================== */
+
+//Elements
 
 const taskInput = document.getElementById("taskInput");
 const taskCategory = document.getElementById("taskCategory");
@@ -49,7 +35,7 @@ window.addEventListener("DOMContentLoaded", () => {
   renderTasks();
 });
 
-//THEME TOGGLE
+//Theme toggle
 
 themeToggle.addEventListener("click", () => {
   const html = document.documentElement;
@@ -121,15 +107,27 @@ function createTaskCard(task) {
 
   card.className = "task-card";
 
-  card.setAttribute("data-id", task.id);
-  card.setAttribute("data-status", task.status);
-  card.setAttribute("data-category", task.category);
+
 
   // dataset demo
   card.dataset.id = task.id;
   card.dataset.status = task.status;
   card.dataset.category = task.category;
 
+card.setAttribute("data-id", task.id);
+card.setAttribute("data-status", task.status);
+card.setAttribute("data-category", task.category);
+
+const info = document.createElement("small");
+
+info.textContent =
+`
+ID: ${card.dataset.id}
+| Status: ${card.dataset.status}
+| Category: ${card.dataset.category}
+`;
+
+card.append(info);
   if (task.status === "completed") {
     card.classList.add("completed");
   }
@@ -380,108 +378,157 @@ function attributeDemo() {
 
 attributeDemo();
 
-//dom manipulation method
 
-const appendDemo =
-  document.getElementById("appendDemo");
 
-const prependDemo =
-  document.getElementById("prependDemo");
 
-const beforeDemo =
-  document.getElementById("beforeDemo");
+  //DOM Manipulation methods on tasks
+ 
 
-const afterDemo =
-  document.getElementById("afterDemo");
+const appendDemo = document.getElementById("appendDemo");
+const prependDemo = document.getElementById("prependDemo");
+const beforeDemo = document.getElementById("beforeDemo");
+const afterDemo = document.getElementById("afterDemo");
+const replaceDemo = document.getElementById("replaceDemo");
+const removeDemo = document.getElementById("removeDemo");
 
-const replaceDemo =
-  document.getElementById("replaceDemo");
+let selectedTask = null;
+taskContainer.addEventListener("click", (e) => {
 
-const removeDemo =
-  document.getElementById("removeDemo");
+    const card = e.target.closest(".task-card");
 
+    if (!card) return;
+
+    selectedTask = card;
+
+    document
+        .querySelectorAll(".task-card")
+        .forEach(task => {
+            task.classList.remove("active-task");
+        });
+
+    card.classList.add("active-task");
+
+});
+
+// append
 appendDemo.addEventListener("click", () => {
-  const target =
-    document.getElementById("demoBox");
 
-  if (!target) return;
+    if(!selectedTask){
+        alert("Select a task first");
+        return;
+    }
 
-  const span =
-    document.createElement("span");
+    const badge =
+        document.createElement("p");
 
-  span.textContent = " [append()] ";
+    badge.className = "demo-element";
 
-  target.append(span);
+    badge.textContent =
+        "Created using append()";
+
+    selectedTask.append(badge);
+
 });
 
+//prepend
 prependDemo.addEventListener("click", () => {
-  const target =
-    document.getElementById("demoBox");
 
-  if (!target) return;
+    if(!selectedTask){
+        alert("Select a task first");
+        return;
+    }
 
-  const span =
-    document.createElement("span");
+    const badge =
+        document.createElement("p");
 
-  span.textContent = " [prepend()] ";
+    badge.className = "demo-element";
 
-  target.prepend(span);
+    badge.textContent =
+        "Created using prepend()";
+
+    selectedTask.prepend(badge);
+
 });
 
+//before 
 beforeDemo.addEventListener("click", () => {
-  const target =
-    document.getElementById("demoBox");
 
-  if (!target) return;
+    if(!selectedTask){
+        alert("Select a task first");
+        return;
+    }
 
-  const div =
-    document.createElement("div");
+    const box =
+        document.createElement("div");
 
-  div.textContent = "before() Element";
+    box.className = "task-card";
 
-  target.before(div);
+    box.innerHTML = `
+        <h3>before()</h3>
+        <p>Inserted Before Selected Task</p>
+    `;
+
+    selectedTask.before(box);
+
 });
-
+//after
 afterDemo.addEventListener("click", () => {
-  const target =
-    document.getElementById("demoBox");
 
-  if (!target) return;
+    if(!selectedTask){
+        alert("Select a task first");
+        return;
+    }
 
-  const div =
-    document.createElement("div");
+    const box =
+        document.createElement("div");
 
-  div.textContent = "after() Element";
+    box.className = "task-card";
 
-  target.after(div);
+    box.innerHTML = `
+        <h3>after()</h3>
+        <p>Inserted After Selected Task</p>
+    `;
+
+    selectedTask.after(box);
+
 });
-
+//replaceWith
 replaceDemo.addEventListener("click", () => {
-  const target =
-    document.getElementById("demoBox");
 
-  if (!target) return;
+    if(!selectedTask){
+        alert("Select a task first");
+        return;
+    }
 
-  const newElement =
-    document.createElement("div");
+    const newCard =
+        document.createElement("div");
 
-  newElement.id = "demoBox";
+    newCard.className = "task-card";
 
-  newElement.textContent =
-    "Element Replaced Successfully";
+    newCard.innerHTML = `
+        <h3>replaceWith()</h3>
+        <p>Task Replaced Successfully</p>
+    `;
 
-  target.replaceWith(newElement);
+    selectedTask.replaceWith(newCard);
+
+    selectedTask = newCard;
+
 });
 
+//remove
 removeDemo.addEventListener("click", () => {
-  const target =
-    document.getElementById("demoBox");
 
-  if (!target) return;
+    if(!selectedTask){
+        alert("Select a task first");
+        return;
+    }
 
-  target.remove();
+    selectedTask.remove();
+
+    selectedTask = null;
+
 });
-
 //event delegation
 
 const grandparent =
