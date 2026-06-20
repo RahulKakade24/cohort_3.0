@@ -162,6 +162,24 @@ select {
     transform: translateY(-3px);
 }
 
+
+
+/* DOM Manipulation Demo */
+
+.task-card p.demo-text {
+    margin-top: 10px;
+    padding: 10px;
+    background: rgba(37,99,235,0.1);
+    border-radius: 8px;
+}
+
+.dom-buttons button:hover {
+    transform: translateY(-3px);
+}
+
+.task-card {
+    transition: all .3s ease;
+} 
 /* Attribute */
 
 .attribute-section input {
