@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOMFlow Pro - Smart Task Manager</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!--Header-->
+    <header class="header">
+        <div class="logo">
+            🚀 DOMFlow Pro
+        </div>
+
+        <button id="themeToggle" class="theme-btn">
+            🌙 Dark Mode
+        </button>
+    </header>
+
+    
+    <section class="hero">
+        <h1>Smart Task Manager</h1>
+
+    </section>
+
+    <!--Task creator-->
+    <section class="task-creator card">
+
+        <h2>Create Task</h2>
+
+        <div class="form-group">
+            <input
+                type="text"
+                id="taskInput"
+                value=""
+                placeholder="Enter Task..."
+            >
+
+            <select id="taskCategory">
+                <option value="Work">Work</option>
+                <option value="Study">Study</option>
+                <option value="Personal">Personal</option>
+                <option value="Fitness">Fitness</option>
+            </select>
+
+            <button id="addTask">
+                Add Task
+            </button>
+        </div>
+
+    </section>
+ <!-- Task counter -->
+    <section class="task-board">
+
+        <h2>Your Tasks</h2>
+
+        <div id="taskContainer">
+
+        </div>
+
+    </section>
+
+<!-- DOM Manipulation -->
+     <section class="dom-lab card">
+
+    <h2>DOM Manipulation on Tasks</h2>
+
+    <div class="dom-buttons">
+
+        <button id="appendDemo">append()</button>
+        <button id="prependDemo">prepend()</button>
+        <button id="beforeDemo">before()</button>
+        <button id="afterDemo">after()</button>
+        <button id="replaceDemo">replaceWith()</button>
+        <button id="removeDemo">remove()</button>
+
+    </div>
+
+</section>
+
+    
+
+
+       
+
+    <!-- Search & filter-->
+    <section class="search-filter card">
+
+        <h2>Search & Filter</h2>
+
+        <div class="filter-wrapper">
+
+            <input
+                type="text"
+                id="searchTask"
+                placeholder="Search Task..."
+            >
+
+            <select id="filterCategory">
+
+                <option value="all">
+                    All Categories
+                </option>
+
+                <option value="Work">
+                    Work
+                </option>
+
+                <option value="Study">
+                    Study
+                </option>
+
+                <option value="Personal">
+                    Personal
+                </option>
+
+                <option value="Fitness">
+                    Fitness
+                </option>
+
+            </select>
+
+        </div>
+
+    </section>
+
+    <!-- Task stats -->
+    <section class="stats">
+
+        <div class="stat-card">
+            <h3>Total Tasks</h3>
+            <span id="totalCount">0</span>
+        </div>
+
+        <div class="stat-card">
+            <h3>Completed</h3>
+            <span id="completedCount">0</span>
+        </div>
+
+        <div class="stat-card">
+            <h3>Pending</h3>
+            <span id="pendingCount">0</span>
+        </div>
+
+    </section>
+
+    <!-- Action buttons -->
+    <section class="action-section">
+
+        <button id="clearAll" class="danger-btn">
+            Clear All Tasks
+        </button>
+
+    </section>
+
+   
+
+    <!-- Attribute & property -->
+    <section class="attribute-section card">
+
+        <h2>Attribute vs Property Demo</h2>
+
+        <p>
+            Type something below and compare:
+        </p>
+
+        <input
+            type="text"
+            id="demoInput"
+            value="Original Attribute Value"
+        >
+
+        <button id="compareBtn">
+            Compare Values
+        </button>
+
+        <div id="comparisonResult">
+
+        </div>
+
+    </section>
+
+    <!-- Event propagation  -->
+    <section class="event-demo card">
+
+        <h2>Event Propagation Simulator</h2>
+
+        <p>
+            Open Console and click the button to see
+            Bubbling & Capturing order.
+        </p>
+
+        <div class="grandparent">
+
+            Grandparent
+
+            <div class="parent">
+
+                Parent
+
+                <button class="child" id="childBtn">
+                    Click Me
+                </button>
+
+            </div>
+
+        </div>
+
+        <div id="eventLogs"></div>
+
+    </section>
+
+    <!-- Pipeline -->
+    <section class="pipeline-section card">
+
+        <h2>Browser Rendering Pipeline</h2>
+
+        <div class="pipeline">
+
+            <div class="pipeline-box">
+                HTML
+            </div>
+
+            <span>➡</span>
+
+            <div class="pipeline-box">
+                Parsing
+            </div>
+
+            <span>➡</span>
+
+            <div class="pipeline-box">
+                Tokenization
+            </div>
+
+            <span>➡</span>
+
+            <div class="pipeline-box">
+                DOM Tree
+            </div>
+
+            <span>➡</span>
+
+            <div class="pipeline-box">
+                CSS
+            </div>
+
+            <span>➡</span>
+
+            <div class="pipeline-box">
+                CSSOM Tree
+            </div>
+
+            <span>➡</span>
+
+            <div class="pipeline-box">
+                Render Tree
+            </div>
+
+            <span>➡</span>
+
+            <div class="pipeline-box">
+                Layout
+            </div>
+
+            <span>➡</span>
+
+            <div class="pipeline-box">
+                Paint
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- concept section -->
+    <section class="concepts card">
+
+        <h2>Rendering Pipeline Explanation</h2>
+
+        <div class="concept-grid">
+
+            <div class="concept-card">
+                <h3>Parsing</h3>
+                <p>
+                    Browser reads HTML code and converts it into tokens.
+                </p>
+            </div>
+
+            <div class="concept-card">
+                <h3>Tokenization</h3>
+                <p>
+                    HTML is broken into meaningful tokens like tags and text.
+                </p>
+            </div>
+
+            <div class="concept-card">
+                <h3>DOM Tree</h3>
+                <p>
+                    Browser creates a tree structure representing HTML.
+                </p>
+            </div>
+
+            <div class="concept-card">
+                <h3>CSSOM Tree</h3>
+                <p>
+                    Browser parses CSS and creates CSS Object Model.
+                </p>
+            </div>
+
+            <div class="concept-card">
+                <h3>Render Tree</h3>
+                <p>
+                    DOM Tree and CSSOM Tree combine to create Render Tree.
+                </p>
+            </div>
+
+            <div class="concept-card">
+                <h3>Paint</h3>
+                <p>
+                    Browser paints pixels on screen for the final UI.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Footer-->
+    <footer>
+
+        <h3>DOMFlow Pro</h3>
+
+        <p>
+            Built with HTML, CSS & Vanilla JavaScript
+        </p>
+
+        <p>
+            Demonstrating DOM APIs, Event Delegation,
+            Event Bubbling, Event Capturing,
+            Attributes vs Properties and Rendering Pipeline.
+        </p>
+
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
