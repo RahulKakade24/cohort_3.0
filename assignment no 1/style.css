@@ -1,0 +1,151 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Base */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #e5e5e5;
+  filter: contrast(120%), saturate(20%);
+}
+
+/* Hero container */
+.hero {
+  display: flex;
+  height: 95vh;
+  margin: 20px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+.hero img{
+  width:100px;
+  height:100px;
+  overflow:hidden;
+ 
+}
+/* Left panel */
+.left {
+  flex: 1;
+  background: #f7c600;
+  padding: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+.left
+.logo {
+  width: 40px;
+  margin-bottom: 600px;
+  
+ 
+}
+.gen {
+  font-size: 12px;
+  letter-spacing: 4px;
+  margin-bottom: 10px;
+  color: #111;
+  font-weight: bold;
+}
+.number{
+  font-weight:800;
+  font-size: 20px;
+}
+.left h1 {
+  font-size: 80px;
+  font-weight: 800;
+  color: #000;
+}
+.desc {
+  max-width: 450px;
+  margin-top: 20px;
+  line-height: 1.6;
+  color: #222;
+}
+.pagination {
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+  font-weight: 600;
+}
+.line {
+  width: 50px;
+  height: 4px;
+  background: #000;
+  margin-right: 12px;
+  
+}
+
+/* Right panel */
+.right {
+  flex: 1;
+  background: linear-gradient(to bottom right, #f3e2b3, #f8f1d9);
+  position: relative;
+}
+/* Menu icon */
+.menu {
+  position: absolute;
+  top: 30px; right: 30px;
+  font-size: 28px;
+  cursor: pointer;
+}
+/* Pikachu image */
+.pikachu {
+  position: absolute;
+  margin-left: 200px;
+  right: 60%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 380px;
+  height:400px;
+    filter: saturate(170%) contrast(110%);
+}
+.right img{
+  height:450px;
+  width:450px;
+}
+/* Navigation dots (right side) */
+.dots {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.dots span {
+  display: block;
+  width: 8px;
+  height: 8px;
+  margin: 10px 0;
+  border-radius: 50%;
+  background: #d4af37;
+}
+.dots span.active {
+  background: #000;
+}
+
+
+
+.left::after {
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  left: 20px;
+   transform: translate(15%, 40%);
+  width: 150px;
+  height: 150px;
+  background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4bJlYnALzkIX-oaHwC_ZjKVTR4XUT3WSf_G6Lpgyqrw&s') no-repeat center/contain;
+  opacity: 0.2;
+  clip-path:  inset(0 0 60px 0);
+   mask-image: radial-gradient(circle, black 40%, transparent 70%);
+} 
+
+/* Optional: Responsive tweak*/
+@media (max-width: 768px) {
+  .hero { flex-direction: column; height: auto; }
+  .left, .right { padding: 40px; }
+  .left h1 { font-size: 48px; }
+} 
