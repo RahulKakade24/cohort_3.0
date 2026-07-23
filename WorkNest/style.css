@@ -1,0 +1,782 @@
+/* ==========================================================================
+   1. CORE VARIABLES & THEME PRESETS
+   ========================================================================== */
+:root {
+    --bg-primary: #f8fafc;
+    --bg-secondary: #ffffff;
+    --bg-accent: #f1f5f9;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --color-primary: #4f46e5;      /* Indigo */
+    --color-primary-hover: #4338ca;
+    --color-success: #10b981;      /* Emerald */
+    --color-danger: #ef4444;       /* Rose */
+    --color-warning: #f59e0b;      /* Amber */
+    --border-color: #e2e8f0;
+    --radius-lg: 12px;
+    --radius-md: 8px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+    --transition-fast: 0.2s ease;
+}
+
+/* Base Reset Layers */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   2. SITE MASTER APPLICATION HEADER
+   ========================================================================== */
+.header {
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+.header .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--color-primary);
+}
+
+.header .logo h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.search-box {
+    background-color: var(--bg-accent);
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 300px;
+}
+
+.search-box input {
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    color: var(--text-main);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.header-right button, .menu-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 18px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: var(--transition-fast);
+}
+
+.header-right button:hover, .menu-btn:hover {
+    background-color: var(--bg-accent);
+    color: var(--color-primary);
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+}
+
+.profile img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.logout-btn {
+    background-color: transparent !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--color-danger) !important;
+    border-radius: var(--radius-md) !important;
+    padding: 6px 14px !important;
+    font-size: 14px !important;
+    font-weight: 500;
+}
+
+.logout-btn:hover {
+    background-color: var(--color-danger) !important;
+    color: white !important;
+}
+
+/* ==========================================================================
+   3. STRUCTURAL WRAPPER PLATFORM DESIGN
+   ========================================================================== */
+.layout {
+    display: flex;
+    margin-top: 70px;
+    min-height: calc(100vh - 70px);
+}
+
+/* Sidebar Component Panels */
+.sidebar {
+    width: 260px;
+    background-color: var(--bg-secondary);
+    border-right: 1px solid var(--border-color);
+    padding: 24px 16px;
+    position: fixed;
+    top: 70px;
+    bottom: 0;
+    left: 0;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sidebar nav a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.sidebar nav a:hover, .sidebar nav a.active {
+    background-color: var(--bg-accent);
+    color: var(--color-primary);
+}
+
+/* Main Viewport Content Card Stack */
+.main-content {
+    flex: 1;
+    margin-left: 260px;
+    padding: 32px;
+    max-width: 1300px;
+    width: calc(100% - 260px);
+}
+
+/* ==========================================================================
+   4. HOMEPAGE SYSTEM VIEW LAYOUTS
+   ========================================================================== */
+.feature-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+
+/* Greetings Header Framework */
+.welcome-card {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+}
+
+.welcome-card h1 {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.quote-card {
+    background-color: var(--bg-primary);
+    border-left: 4px solid var(--color-primary);
+    padding: 12px 16px;
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.quote-card h3 {
+    font-size: 13px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+.quote-card p {
+    font-style: italic;
+    color: var(--text-main);
+}
+
+/* Top Level Metrics Boxes */
+.top-widgets, .stats, .features-menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.widget, .stat-card, .feature-card {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-fast);
+}
+
+.widget h3, .stat-card p, .feature-card h3 {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.widget h2, .stat-card h2 {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+/* Action Feature Matrix Items */
+.feature-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.feature-card i {
+    font-size: 24px;
+    color: var(--color-primary);
+    margin-bottom: 16px;
+    background-color: var(--bg-accent);
+    padding: 12px;
+    border-radius: var(--radius-md);
+}
+
+.feature-card p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    flex: 1;
+}
+
+.feature-card button {
+    width: 100%;
+    background-color: var(--bg-accent);
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: var(--radius-md);
+    color: var(--color-primary);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.feature-card button:hover {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+/* Shared Feature Target Templates Architecture */
+.feature-page {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    box-shadow: var(--shadow-md);
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--bg-accent);
+    border: none;
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--text-main);
+    margin-bottom: 24px;
+    transition: var(--transition-fast);
+}
+
+.back-btn:hover {
+    background-color: var(--border-color);
+}
+
+/* ==========================================================================
+   5. TODO INTERACTION MODULE STYLES
+   ========================================================================== */
+.todo-container { max-width: 800px; margin: 0 auto; }
+.todo-header h2 { font-size: 24px; margin-bottom: 4px; display: flex; align-items: center; gap: 10px; }
+.todo-header p { color: var(--text-muted); margin-bottom: 24px; }
+
+.todo-input-card {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.todo-input-card input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    outline: none;
+    font-size: 15px;
+}
+
+.todo-input-card button {
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 0 24px;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.todo-input-card button:hover { background-color: var(--color-primary-hover); }
+
+.todo-toolbar {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.search-task {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--border-color);
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+}
+
+.search-task input { border: none; outline: none; width: 100%; }
+
+.todo-toolbar select {
+    padding: 8px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    outline: none;
+    background-color: var(--bg-secondary);
+}
+
+.todo-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    background-color: var(--bg-primary);
+    padding: 12px;
+    border-radius: var(--radius-md);
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.todo-stat h3 { font-size: 18px; color: var(--text-main); }
+.todo-stat span { font-size: 12px; color: var(--text-muted); }
+
+.empty-state {
+    text-align: center;
+    padding: 40px 0;
+    color: var(--text-muted);
+}
+
+.empty-state i { font-size: 48px; margin-bottom: 12px; opacity: 0.5; }
+
+.todo-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background-color: var(--bg-secondary);
+}
+
+.todo-item.completed {
+    background-color: var(--bg-accent);
+    opacity: 0.7;
+}
+
+.todo-left { display: flex; align-items: center; gap: 12px; }
+.todo-left input[type="checkbox"] { transform: scale(1.1); cursor: pointer; }
+.task-text.completed { text-decoration: line-through; color: var(--text-muted); }
+
+.todo-actions { display: flex; gap: 4px; }
+.todo-actions button {
+    background: none;
+    border: none;
+    padding: 6px;
+    cursor: pointer;
+    border-radius: 4px;
+    color: var(--text-muted);
+}
+.todo-actions .edit-btn:hover { color: var(--color-primary); background-color: var(--bg-accent); }
+.todo-actions .delete-btn:hover { color: var(--color-danger); background-color: #fee2e2; }
+
+/* ==========================================================================
+   6. HOURLY DAILY PLANNER MODULE STYLES
+   ========================================================================== */
+.planner-container { width: 100%; }
+
+.planner-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.planner-title h2 { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+.planner-title p { color: var(--text-muted); }
+
+.planner-date-picker {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-accent);
+    border-radius: var(--radius-md);
+    padding: 6px;
+}
+
+.planner-date-picker button {
+    background: none;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    color: var(--text-main);
+}
+
+.planner-date-picker h3 { font-size: 15px; min-width: 120px; text-align: center; }
+
+/* Timeline Dynamic Progress Metrics */
+.planner-progress-card {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    margin-bottom: 32px;
+}
+
+.planner-progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.planner-progress-bar-bg {
+    background-color: var(--border-color);
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+#plannerProgressBarFill {
+    background-color: var(--color-success);
+    height: 100%;
+    width: 0%;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Split Column Grid Execution */
+.planner-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 32px;
+}
+
+@media (max-width: 900px) {
+    .planner-grid { grid-template-columns: 1fr; }
+}
+
+.planner-time-blocking h3, .planner-sidebar-widgets h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Time Block Item Rows */
+.planner-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.planner-time-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.planner-time-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    width: 75px;
+    text-align: right;
+}
+
+.planner-slot-input-wrapper {
+    flex: 1;
+    display: flex;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background-color: var(--bg-secondary);
+    overflow: hidden;
+}
+
+.planner-slot-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 12px;
+    font-size: 14px;
+    background: transparent;
+}
+
+.planner-slot-lock-btn {
+    background: transparent;
+    border: none;
+    border-left: 1px solid var(--border-color);
+    padding: 0 14px;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+.planner-slot-lock-btn:hover { color: var(--color-primary); }
+
+/* Sidebar Widgets Components */
+.planner-sidebar-widgets {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.planner-widget-card {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+}
+
+.planner-focus-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.planner-focus-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    padding: 10px 14px;
+    border-radius: var(--radius-md);
+}
+
+.planner-focus-row input[type="checkbox"] { transform: scale(1.1); cursor: pointer; }
+.planner-focus-row input[type="text"] { border: none; outline: none; width: 100%; font-size: 14px; background: transparent; }
+
+/* Day Scratchpad Textarea Block */
+#plannerDayNotesInput {
+    width: 100%;
+    height: 150px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 12px;
+    font-size: 14px;
+    resize: none;
+    outline: none;
+    background-color: var(--bg-secondary);
+    line-height: 1.5;
+}
+
+.planner-notes-status {
+    text-align: right;
+    margin-top: 6px;
+    font-size: 11px;
+    color: var(--color-success);
+    font-weight: 500;
+}
+/* --- FEATURE PAGE GENERAL WRAPPER --- */
+.feature-page {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Back Button Alignment & Layout */
+.back-btn {
+    background: none;
+    border: none;
+    color: #666666;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    transition: color 0.2s;
+}
+
+.back-btn:hover {
+    color: #111111;
+}
+
+/* --- POMODORO CARD INTERIOR --- */
+.pomodoro-container {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+.pomodoro-container h2 {
+    margin-bottom: 1rem;
+    color: #222222;
+}
+
+/* Interactive Status Pill */
+#timer-status {
+    display: inline-block;
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+}
+
+.status-work {
+    background-color: #ffebee;
+    color: #e53935;
+}
+
+.status-break {
+    background-color: #e0f2f1;
+    color: #00897b;
+}
+
+/* Countdown Numeric Layout */
+.timer-display {
+    font-size: 5.5rem;
+    font-weight: 700;
+    color: #222222;
+    margin-bottom: 2rem;
+    font-variant-numeric: tabular-nums; /* Keeps digits stable without shifting */
+}
+
+/* Control Adjustments */
+.timer-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.control-btn {
+    padding: 0.75rem 1.75rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: opacity 0.2s, background-color 0.2s;
+}
+
+.control-btn:active {
+    transform: scale(0.98);
+}
+
+.control-btn.play { background-color: #e53935; color: #ffffff; }
+.control-btn.pause { background-color: #ffa000; color: #ffffff; }
+.control-btn.reset { background-color: #f5f5f5; color: #444444; }
+
+.control-btn.reset:hover { background-color: #e0e0e0; }
+
+/* Session Counter Area */
+.session-counter {
+    font-size: 0.95rem;
+    color: #777777;
+    border-top: 1px solid #eeeeee;
+    padding-top: 1.5rem;
+}
+
+#session-count {
+    font-weight: 700;
+    color: #222222;
+}
+/* Utility helper to force block display */
+.d-block {
+    display: block !important;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+/* Ensure the pages scale correctly when set to block */
+#dashboard-page, #pomodoro-page {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Spaces out input fields when forced to display: block */
+#custom-minutes {
+    margin-top: 8px;
+    margin-bottom: 20px;
+    padding: 8px;
+    width: 80px;
+    text-align: center;
+}
