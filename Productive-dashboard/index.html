@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProductiveDashBoard</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body class="text-slate-200 antialiased overflow-hidden">
+
+    <div class="flex h-screen w-full flex-col md:flex-row">
+        
+        <aside id="sidebar" class="hidden md:flex w-72 flex-col bg-slate-900 border-r border-slate-800 p-6 transition-colors duration-300">
+            <div class="flex items-center gap-3 mb-10">
+                <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-indigo-500/20">
+                    <i class="fa-solid fa-bolt text-lg"></i>
+                </div>
+                <h1 class="text-xl font-extrabold tracking-tight text-white">ProductiveDashBoard</h1>
+            </div>
+
+            <nav class="flex-1 space-y-2">
+                <button data-target="dashboard-view" class="nav-link active w-full flex items-center gap-4 px-4 py-3 rounded-xl text-slate-400 font-medium transition-all hover:text-white">
+                    <i class="fa-solid fa-chart-pie w-5"></i> Overview
+                </button>
+                <button data-target="todo-view" class="nav-link w-full flex items-center gap-4 px-4 py-3 rounded-xl text-slate-400 font-medium transition-all hover:text-white">
+                    <i class="fa-solid fa-list-check w-5"></i> Tasks
+                </button>
+                <button data-target="planner-view" class="nav-link w-full flex items-center gap-4 px-4 py-3 rounded-xl text-slate-400 font-medium transition-all hover:text-white">
+                    <i class="fa-solid fa-calendar-day w-5"></i> Planner
+                </button>
+                <button data-target="timer-view" class="nav-link w-full flex items-center gap-4 px-4 py-3 rounded-xl text-slate-400 font-medium transition-all hover:text-white">
+                    <i class="fa-solid fa-hourglass-start w-5"></i> Focus Timer
+                </button>
+                <button data-target="goals-view" class="nav-link w-full flex items-center gap-4 px-4 py-3 rounded-xl text-slate-400 font-medium transition-all hover:text-white">
+                    <i class="fa-solid fa-bullseye w-5"></i> Goals
+                </button>
+                <button data-target="quotes-view" class="nav-link w-full flex items-center gap-4 px-4 py-3 rounded-xl text-slate-400 font-medium transition-all hover:text-white">
+                    <i class="fa-solid fa-quote-left w-5"></i> Inspiration
+                </button>
+            </nav>
+
+            <div class="pt-6 border-t border-slate-800">
+                <button id="theme-toggle" class="w-full flex items-center justify-center gap-3 px-4 py-3 bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors">
+                    <i id="theme-icon" class="fa-solid fa-moon"></i>
+                    <span id="theme-text">Dark Mode</span>
+                </button>
+            </div>
+        </aside>
+
+        <main class="flex-1 flex flex-col min-w-0 relative h-full">
+            
+            <header class="h-20 flex items-center justify-between px-6 md:px-10 border-b border-slate-800 shrink-0">
+                <div>
+                    <h2 id="header-date" class="text-lg font-bold text-white">July 9, 2024</h2>
+                    <p class="text-xs text-slate-500 font-medium uppercase tracking-wider"></p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div id="live-time" class="hidden sm:block text-sm font-mono bg-slate-800 px-3 py-1 rounded-lg text-indigo-400 border border-slate-700">00:00:00</div>
+                </div>
+            </header>
+
+            <div id="viewport" class="flex-1 overflow-y-auto p-6 md:p-10 custom-scrollbar pb-32 md:pb-10">
+                
+                <section id="dashboard-view" class="view-panel active">
+                    <div class="mb-8">
+                        <div class="relative h-48 rounded-3xl overflow-hidden bg-slate-800 border border-slate-700 flex flex-col justify-end p-8">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+                            <div class="relative z-10">
+                                <h3 id="hero-clock" class="text-5xl font-black text-white tracking-tighter">00:00 AM</h3>
+                                <p id="hero-date" class="text-slate-400 font-medium mt-1">Thursday, July 9</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="glass-panel rounded-3xl p-6 border border-slate-800">
+                            <div class="flex justify-between items-start mb-6">
+                                <div>
+                                    <span class="text-[10px] font-bold text-indigo-400 uppercase tracking-[0.2em]">Environment</span>
+                                    <h4 id="w-location" class="text-xl font-bold text-white mt-1">Location unknown</h4>
+                                </div>
+                                <i class="fa-solid fa-cloud-sun text-slate-600 text-2xl"></i>
+                            </div>
+                            <div class="flex items-center gap-8">
+                                <div class="text-5xl font-black text-white" id="w-temp">--°</div>
+                                <div class="grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
+                                    <div class="flex flex-col"><span class="text-slate-500 text-xs">Feels like</span> <span id="w-feels" class="font-bold">--°</span></div>
+                                    <div class="flex flex-col"><span class="text-slate-500 text-xs">Humidity</span> <span id="w-humidity" class="font-bold">--%</span></div>
+                                    <div class="flex flex-col"><span class="text-slate-500 text-xs">Wind</span> <span id="w-wind" class="font-bold">-- km/h</span></div>
+                                    <div class="flex flex-col"><span class="text-slate-500 text-xs">Status</span> <span id="w-condition" class="font-bold">--</span></div>
+                                </div>
+                            </div>
+                            <div class="mt-6 pt-6 border-t border-slate-800 flex justify-between items-center">
+                                <span id="w-updated" class="text-[10px] text-slate-500 italic">Syncing weather...</span>
+                                <button id="w-retry" class="text-indigo-400 text-xs font-bold hover:underline" hidden>Retry</button>
+                            </div>
+                        </div>
+
+                        <div class="glass-panel rounded-3xl p-6 border border-slate-800">
+                            <h4 class="text-xl font-bold text-white mb-6">Progress Metrics</h4>
+                            <div class="chart-container">
+                                <canvas id="productivityChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="todo-view" class="view-panel">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                        <div class="lg:col-span-4">
+                            <form id="todo-form" class="bg-slate-800/50 p-6 rounded-3xl border border-slate-700">
+                                <h3 class="text-xl font-bold text-white mb-6">Create Task</h3>
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="text-xs font-bold text-slate-400 uppercase ml-1">Title</label>
+                                        <input type="text" id="todo-title" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 mt-2 focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Task name...">
+                                    </div>
+                                    <div>
+                                        <label class="text-xs font-bold text-slate-400 uppercase ml-1">Details</label>
+                                        <textarea id="todo-desc" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 mt-2 h-24 resize-none outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Notes..."></textarea>
+                                    </div>
+                                    <label class="flex items-center gap-3 cursor-pointer group">
+                                        <input type="checkbox" id="todo-priority" class="w-5 h-5 rounded-md border-slate-700 bg-slate-900 text-indigo-600 focus:ring-offset-slate-900">
+                                        <span class="text-sm font-medium text-slate-300 group-hover:text-white">High Priority</span>
+                                    </label>
+                                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-indigo-600/20">Add Entry</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="lg:col-span-8">
+                            <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
+                                <div class="flex bg-slate-800 p-1 rounded-xl border border-slate-700" id="todo-filters">
+                                    <button data-filter="all" class="px-5 py-2 text-sm font-bold rounded-lg transition-all bg-indigo-600 text-white shadow-sm">All</button>
+                                    <button data-filter="active" class="px-5 py-2 text-sm font-bold rounded-lg text-slate-400 hover:text-white transition-all">Active</button>
+                                    <button data-filter="completed" class="px-5 py-2 text-sm font-bold rounded-lg text-slate-400 hover:text-white transition-all">Done</button>
+                                </div>
+                                <button id="clear-completed" class="text-slate-500 hover:text-rose-400 text-xs font-bold transition-colors">Clear Completed</button>
+                            </div>
+                            <div id="todo-list" class="space-y-4"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="planner-view" class="view-panel">
+                    <div class="flex justify-between items-center mb-8">
+                        <div>
+                            <h3 class="text-3xl font-black text-white">Daily Execution</h3>
+                            <p class="text-slate-500 font-medium">Structure your hours for maximum output.</p>
+                        </div>
+                        <button id="clear-planner" class="bg-slate-800 hover:bg-rose-500/10 border border-slate-700 text-slate-300 hover:text-rose-400 px-6 py-2 rounded-xl text-sm font-bold transition-all">Wipe Day</button>
+                    </div>
+                    <div id="planner-grid" class="bg-slate-800/40 border border-slate-800 rounded-3xl overflow-hidden divide-y divide-slate-800"></div>
+                </section>
+
+                <section id="timer-view" class="view-panel">
+                    <div class="max-w-xl mx-auto flex flex-col items-center justify-center py-12">
+                        <div class="flex bg-slate-800 p-1.5 rounded-2xl border border-slate-700 mb-12" id="timer-modes">
+                            <button data-mode="focus" data-mins="25" class="px-8 py-3 text-sm font-bold rounded-xl transition-all bg-indigo-600 text-white">Focus</button>
+                            <button data-mode="short" data-mins="5" class="px-8 py-3 text-sm font-bold rounded-xl text-slate-400 transition-all">Short Break</button>
+                            <button data-mode="long" data-mins="15" class="px-8 py-3 text-sm font-bold rounded-xl text-slate-400 transition-all">Long Break</button>
+                        </div>
+
+                        <div class="relative w-80 h-80 flex items-center justify-center mb-12">
+                            <div class="absolute inset-0 border-[10px] border-slate-800 rounded-full"></div>
+                            <div id="timer-display" class="text-8xl font-black text-white tracking-tighter tabular-nums">25:00</div>
+                        </div>
+
+                        <div class="flex gap-4 w-full">
+                            <button id="timer-start" class="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white font-black py-6 rounded-3xl text-xl shadow-xl shadow-indigo-600/20 transition-all">
+                                <i class="fa-solid fa-play mr-2"></i> Start
+                            </button>
+                            <button id="timer-pause" class="flex-1 bg-slate-800 hover:bg-slate-700 text-white font-black py-6 rounded-3xl text-xl transition-all" hidden>
+                                <i class="fa-solid fa-pause mr-2"></i> Pause
+                            </button>
+                            <button id="timer-reset" class="px-8 bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white rounded-3xl transition-all">
+                                <i class="fa-solid fa-rotate-right"></i>
+                            </button>
+                        </div>
+                        
+                        <div id="timer-dots" class="mt-12 flex gap-3"></div>
+                    </div>
+                </section>
+
+                <section id="goals-view" class="view-panel">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                        <div class="lg:col-span-4">
+                            <form id="goal-form" class="bg-indigo-900/10 p-8 rounded-3xl border border-indigo-500/20">
+                                <h3 class="text-2xl font-black text-white mb-6">Big Milestones</h3>
+                                <div class="space-y-6">
+                                    <input type="text" id="goal-title" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-indigo-500 outline-none text-white font-medium" placeholder="Goal statement...">
+                                    <textarea id="goal-desc" class="w-full bg-slate-900 border border-slate-700 rounded-2xl px-6 py-4 h-32 resize-none outline-none focus:ring-2 focus:ring-indigo-500 text-white" placeholder="Success conditions..."></textarea>
+                                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-black py-5 rounded-2xl transition-all">Commit Goal</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="lg:col-span-8">
+                            <div id="goal-list" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="quotes-view" class="view-panel h-full flex items-center justify-center">
+                    <div class="max-w-2xl text-center space-y-8">
+                        <i class="fa-solid fa-quote-left text-6xl text-indigo-600/30"></i>
+                        <blockquote id="quote-text" class="text-4xl md:text-5xl font-black text-white leading-tight tracking-tight italic">
+                            "You don't have to be great to start, but you have to start to be great." 
+                        </blockquote>
+                        <cite id="quote-author" class="block text-xl text-slate-500 font-bold">— Zig Ziglar</cite>
+                        <div class="flex justify-center gap-4 pt-6">
+                            <button id="new-quote" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-8 py-4 rounded-2xl transition-all">New Inspiration</button>
+                            <button id="copy-quote" class="bg-slate-800 hover:bg-slate-700 text-white font-bold px-8 py-4 rounded-2xl border border-slate-700 transition-all">Copy</button>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <nav id="mobile-nav" class="md:hidden fixed bottom-0 left-0 right-0 h-20 bg-slate-900 border-t border-slate-800 flex justify-around items-center px-4 z-50">
+                <button data-target="dashboard-view" class="nav-link flex flex-col items-center gap-1 text-slate-500">
+                    <i class="fa-solid fa-chart-pie text-lg"></i><span class="text-[10px] font-bold uppercase">Home</span>
+                </button>
+                <button data-target="todo-view" class="nav-link flex flex-col items-center gap-1 text-slate-500">
+                    <i class="fa-solid fa-list-check text-lg"></i><span class="text-[10px] font-bold uppercase">Tasks</span>
+                </button>
+                <button data-target="timer-view" class="nav-link flex flex-col items-center gap-1 text-slate-500">
+                    <i class="fa-solid fa-hourglass-start text-lg"></i><span class="text-[10px] font-bold uppercase">Focus</span>
+                </button>
+                <button data-target="planner-view" class="nav-link flex flex-col items-center gap-1 text-slate-500">
+                    <i class="fa-solid fa-calendar-day text-lg"></i><span class="text-[10px] font-bold uppercase">Plan</span>
+                </button>
+            </nav>
+        </main>
+    </div>
+
+    <div id="toast-container" class="fixed top-6 right-6 z-[100] flex flex-col gap-3 pointer-events-none"></div>
+
+    <div id="modal-backdrop" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-[200] hidden items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 max-w-sm w-full shadow-2xl">
+            <h3 id="modal-title" class="text-xl font-bold text-white mb-2">Are you sure?</h3>
+            <p id="modal-desc" class="text-slate-400 text-sm mb-8">This action cannot be undone.</p>
+            <div class="flex gap-4">
+                <button id="modal-cancel" class="flex-1 bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 rounded-xl transition-all">Cancel</button>
+                <button id="modal-confirm" class="flex-1 bg-rose-600 hover:bg-rose-500 text-white font-bold py-3 rounded-xl transition-all">Delete</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
