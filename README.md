@@ -1,73 +1,55 @@
-# React + TypeScript + Vite
+EaseUi
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+EaseUi is a sleek, modern, and developer-friendly UI component library designed for high-performance React applications. It features a custom-built dark/light mode toggle with eye-protection colors, animated interactions via GSAP, and is built with Tailwind CSS.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Features
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Dark/Light Mode: Seamless theme switching with persistent user preference stored in localStorage.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Eye-Protection Palette: Carefully crafted dark mode colors to reduce eye strain during long sessions.
+
+GSAP Animations: Fluid entry and hover animations for a premium user experience.
+
+Modular Components: Highly customizable and reusable components built with Radix UI slots and Tailwind CSS.
+
+Getting Started
+
+Prerequisites
+
+Node.js (v18+)
+
+npm or yarn
+
+Installation
+
+Clone the repository:
+git clone
+cd ease-ui
+
+Install dependencies:
+npm install
+
+Run the development server:
+npm run dev
+
+Project Structure
+
+src/components/: Reusable UI components.
+
+src/features/: Redux slices (including ThemeSlice).
+
+src/libs/: Utility functions and GSAP animation configurations.
+
+src/index.css: Global styles, including theme definitions and color palettes.
+
+Theme Configuration
+
+The project uses a custom Tailwind CSS configuration and CSS variables for theming. To adjust the dark mode palette, edit the .dark class block in src/index.css.
+
+Documentation
+
+Components: Check the /components route for a full gallery of available UI elements.
+
+API Reference: Detailed prop definitions are provided on the component documentation pages.
 ```

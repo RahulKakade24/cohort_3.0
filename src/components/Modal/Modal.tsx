@@ -81,13 +81,13 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
         >
           <div>
             {title && (
-              <h3 className="text-xl font-semibold mb-2 text-[inherit]">
+              <h3 className="text-xl font-semibold mb-2 `text-inherit`">
                 {title}
               </h3>
             )}
 
             {description && (
-              <p className="text-gray-600 dark:text-gray-300 mb-4 text-[inherit]">
+              <p className="`text-gray-600` dark:text-gray-300 mb-4 `text-inherit`">
                 {description}
               </p>
             )}

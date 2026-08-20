@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Input, type InputProps } from "./Input";
+import { Input, type InputProps } from "./Input.tsx";
 import { cn } from "@/libs/utils";
 import gsap from "gsap";
 

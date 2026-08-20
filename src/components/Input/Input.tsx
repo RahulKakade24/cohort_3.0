@@ -1,10 +1,10 @@
+
 import React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/libs/utils";
 
 const inputVariants = cva(
-  "w-full rounded-md focus:outline-none shadow-sm transition-all duration-150 bg-white placeholder:text-gray-400",
-  // w-full bg-transparent border-b border-gray-500 pb-2 pt-6 focus:outline-none transition-all
+  "w-full rounded-md focus:outline-none shadow-sm transition-all duration-150 bg-white placeholder:text-gray-400 border",
   {
     variants: {
       size: {
@@ -22,6 +22,7 @@ const inputVariants = cva(
       },
       disabled: {
         true: "bg-gray-100 text-gray-400 cursor-not-allowed opacity-80",
+        false: "",
       },
     },
     defaultVariants: {
@@ -32,14 +33,14 @@ const inputVariants = cva(
   }
 );
 
+// Use Omit to remove conflicting 'disabled' and 'size' props from the native HTML elements
 export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement>,
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "disabled" | "size">,
     VariantProps<typeof inputVariants> {
   label?: string;
   hint?: string;
   error?: string;
   id?: string;
-  size?: "sm" | "md" | "lg";
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -61,6 +62,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       id ||
       React.useId?.() ||
       `input-${Math.random().toString(36).slice(2, 9)}`;
+
+    // Ensure CVA handles the disabled variant cleanly as a boolean match
+    const computedDisabled = disabled || false;
+
     return (
       <div className="flex flex-col gap-1 w-full">
         {label && (
@@ -74,8 +79,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <input
           id={inputId}
           ref={ref}
-          className={cn(inputVariants({ size, tone, disabled }), className)}
-          disabled={disabled}
+          className={cn(
+            inputVariants({ size, tone, disabled: computedDisabled }), 
+            className
+          )}
+          disabled={computedDisabled}
           {...props}
         />
         {error ? (

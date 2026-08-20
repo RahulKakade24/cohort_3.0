@@ -1,4 +1,4 @@
-import ComponentDemo from "@/pages/ComponentsDemo"; // your reusable ComponentDemo
+import ComponentDemo from "@/pages/ComponentsDemo"; 
 import PropsTable from "@/components/Personal/PropsTable";
 import { Input } from "@/components";
 import { PasswordInput } from "@/components/Input/PasswordInput";
@@ -76,14 +76,14 @@ const InputPage = () => {
                 label="Email"
                 type="email"
                 placeholder="Enter your email"
-                // variant="success"
+                
                 size="md"
               />
               <Input
                 label="Email"
                 type="email"
                 placeholder="Enter your email"
-                // variant="success"
+                
                 size="lg"
               />
             </div>

@@ -17,8 +17,9 @@ const inputCls = cva(
   }
 );
 
+// Omit native 'size' from InputHTMLAttributes so we can use our own size variant
 export interface FloatingLabelProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
   label: string;
   size?: "sm" | "md" | "lg";
 }
@@ -57,3 +58,5 @@ export const FloatingLabelInput = React.forwardRef<
   );
 });
 FloatingLabelInput.displayName = "FloatingLabelInput";
+
+export default FloatingLabelInput;

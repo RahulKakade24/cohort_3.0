@@ -1,10 +1,11 @@
-@import "tailwindcss";
+ @import "tailwindcss";
 :root {
   --bg-color: #ffffff;
   --text-color: #000000;
   --primary-color: #2563eb;
-  /* --card-bg: #f3f4f6; */
+   --card-bg: #f3f4f6; 
 }
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 [data-theme="dark"] {
   --bg-color: #18181b;
@@ -32,4 +33,4 @@ body {
 
 .animate-fadeIn {
   animation: fadeIn 0.3s ease-out;
-}
+} 

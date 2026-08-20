@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from "react";
 import type { VariantProps } from "class-variance-authority";
 import { cva } from "class-variance-authority";
 import { cn } from "@/libs/utils";
-// import gsap from "gsap";
+import gsap from "gsap";
 import { entranceAnimations } from "@/libs/animations/entranceAnimation";
 import { hoverAnimations } from "@/libs/animations/hoverAnimation";
 
@@ -21,15 +21,15 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        dark: "bg-slate-900 text-white",
+        dark: "bg-slate-900 dark:bg-slate-800 text-white hover:bg-slate-800 dark:hover:bg-slate-700",
         primary: "bg-indigo-600 hover:bg-indigo-700 text-white",
         secondary: "bg-indigo-500 hover:bg-indigo-700 text-white",
         destructive: "bg-red-700 text-white hover:bg-red-900",
-        ok: "bg-green-500 hover:bg-green-700",
-        ghost: "bg-gray-50 hover:bg-gray-100 text-gray-700",
-        link: "bg-transparent hover:bg-transparent text-indigo-600",
+        ok: "bg-green-500 hover:bg-green-700 text-white",
+        ghost: "bg-gray-50 hover:bg-gray-100 text-gray-700 dark:bg-slate-800 dark:text-gray-200 dark:hover:bg-slate-700",
+        link: "bg-transparent hover:bg-transparent text-indigo-600 dark:text-indigo-400",
         outline:
-          "bg-transparent hover:bg-gray-100 text-gray-700 border border-gray-300",
+          "bg-transparent hover:bg-gray-100 dark:hover:bg-slate-800 text-gray-700 dark:text-gray-200 border border-gray-300 dark:border-slate-700",
       },
       size: {
         default: "px-9 py-3",
@@ -117,5 +117,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     );
   }
 );
+
 Button.displayName = "Button";
+
 export { Button, buttonVariants };

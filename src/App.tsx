@@ -1,13 +1,13 @@
-import AppRouter from "./router/AppRouter";
+ import AppRouter from "./router/AppRouter";
 
-type Props = {};
+ type Props = {};
 
-function App({}: Props) {
-  return (
+ function App({}: Props) {
+   return (
     <div className="min-h-screen w-full">
       <AppRouter />
-    </div>
-  );
-}
+     </div>
+   );
+ }
 
 export default App;
