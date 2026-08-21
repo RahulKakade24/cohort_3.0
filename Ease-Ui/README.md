@@ -1,4 +1,4 @@
-# EaseUi — Updated
+# EaseUi 
 
 This version fixes the application architecture and matches the supplied EaseUi reference layout more closely.
 
